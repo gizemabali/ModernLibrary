@@ -1,0 +1,8 @@
+{{extend 'template.html'}}
+{{import time}}
+<h2>{{=account.username}}'s page</h2>
+Last seen on {{=time.strftime("%a, %d %B %Y %H:%M:%S", time.gmtime(account.login_time))}} <br> </br>
+Information about me= {{=account.information or ''}}<br><br>
+{{if user and (account.id == user.id or user.role == "admin"):}}email = {{=account.email}}</br> age = {{=account.age}} <br> city= {{=account.city}} <br>{{pass}}
+{{if user and (account.id == user.id or user.role == "admin"):}} {{=form or ''}} {{pass}}
+

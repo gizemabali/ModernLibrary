@@ -1,0 +1,20 @@
+{{extend "template.html"}}
+{{
+def info_checker(info):
+      if(info == ""):
+         return "The information of this book will be added soon..."
+      else:
+         return info
+         
+
+}}
+
+{{pass}}
+
+App Name: {{=appguide.title}} </br>
+ <div style="margin-bottom: 20px;">
+ 
+   
+   <a href="{{=appguide.google_play_link}}"><img width=150 src="/modern_library/static/link_logos/{{=title}}.jpg"> </a>
+
+</div>

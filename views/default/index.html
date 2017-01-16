@@ -1,0 +1,37 @@
+{{extend "template.html"}}
+<div>Welcome to our library ...</div>
+<h4>Advanced Search</h4>
+<span>It's an advanced search. You can select two or more options to find a specific book or etc.</span>
+ <h4>To try advanced search, please search these available objects!</h4><br>
+ <span> <strong>Some Available Titles:  </strong>crime and punishment, the plague, notes from underground, 1984, dune, hamlet, the tempest, animal farm</span> <br>
+ <span> <strong>Some Available Authors:  </strong>franz kafka, Fyodor Dostoyevsky, albert camus, John Steinbeck, Shakespeare, 	Orson Scott Card</span><br>
+ <span> <strong>Available Categories: </strong> classic, science fiction, Top100 </span> <br>
+ <span> <strong>Some Available Prices: </strong>20, 30, 25, 26, 40  </span><br>
+ <span> <strong>Some Available Years:  </strong>1603, 1623, 1622, 1997, 1939, 1947</span><br>
+ <span> <strong>Some Available Publishers:  </strong>Metis Yayınevi, Sel Yayınevi, Can Yayınevi, iletişim Yayınevi(don't type like (İletişim Yayınevi) sensitive first characters! )</span><br>
+{{=BEAUTIFY(advanced_search)}}
+{{if len(database_function_info): }}
+         <table style="width:100%; border: 1px solid black;">
+            <tr>
+                <td style="width: 150px;">Title</td>
+                <td style="width: 150px;">Author</td>
+                <td style="width: 100px;">Price</td>
+                <td style="width: 100px;">Year</td>
+                <td style="width: 100px;">Publisher</td>
+            </tr>
+         </table>
+ 
+
+ {{for info in database_function_info:}}
+
+ <table style="width:100%; border: 1px solid black;">
+
+     <tr>
+        <td style="width: 150px;"><a href="/modern_library/default/book/{{=info.id}}">{{=info.title}}</a></td>
+        <td style="width: 150px;">{{=info.author_name}}</td>
+        <td style="width: 100px;">{{=info.price}}TL</td><td style="width: 100px;">{{=info.year}}</td><td style="width: 100px;">{{=info.publisher}}</td>
+     </tr>   
+
+</table>
+
+{{pass}}{{pass}}

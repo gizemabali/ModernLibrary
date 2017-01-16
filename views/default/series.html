@@ -1,0 +1,19 @@
+{{extend "template.html"}}
+
+<table style="width:100%; border: 1px solid black;">
+<tr>
+    <th style="width: 500px;">Seri Name</th>
+    <th style="width: 495px;">Author</th> 
+
+  </tr>
+</table>
+{{for seri in seri_list:}}
+
+<table style="width:100%; border: 1px solid black;">
+<tr>
+    <td style="width: 100px;"><a href="/modern_library/default/seri/{{=seri.id}}/{{=(seri.seri_name).replace(" ", "_")}}">{{=seri.seri_name}} </a> 
+    </br> </td>
+    <td style="width: 100px;">{{=seri.author}}</td>
+</tr>
+</table>
+    {{pass}}

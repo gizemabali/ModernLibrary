@@ -1,0 +1,45 @@
+<div id="footer">
+
+
+      <ul id="footer-nav">
+	  {{
+	    menu2 = [("index", "Home"),("about", "About"),("classics","Classics"),
+		("links","Links"),("contact","Contact Us"),("shakespeare_bests","Shakespeare"),("top100","Top Listings"),
+		("appguide","AppGuide")]
+	    
+		for (path1,text1) in menu2:
+		    if request.controller == "default" and request.function== path1:
+			   response.write(LI(A(text1, _href=URL(path1))))
+			elif request.controller == "default" and path1 != "index" and path1 != "about" and path1 != "classics" and path1 != "top100" and path1 != "shakespeare_bests" and path1 != "appguide":
+			   response.write(LI(A(text1, _href=URL("error_page"))))
+			else:
+			   response.write(LI(A(text1, _href=URL(path1))))
+	  
+	  }}
+	  {{pass}}
+	  {{pass}}
+	  {{pass}}
+
+      </ul>
+      <p class="copyright">Copyright 2015 Coding by Gizem & Ümran</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- The javascript =============================================
+       (Placed at the end of the document so the pages load faster) -->
+
+  <script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
+  <link rel="{{=URL('static','css/bootstrap.min.css')}}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="{{=URL('static','js/web2py_bootstrap.js')}}"></script>
+  {{if response.google_analytics_id:}}
+    <script src="{{=URL('static','js/analytics.js')}}"></script>
+    <script type="text/javascript">
+    analytics.initialize({
+      'Google Analytics':{trackingId:'{{=response.google_analytics_id}}'}
+    });</script>
+  {{pass}}
+</body>
+</html>

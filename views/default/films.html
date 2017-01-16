@@ -1,0 +1,23 @@
+{{extend "template.html"}}
+
+<h4>Popular Films:</h4>
+<table style="width:100%; border: 1px solid black;">
+<tr>
+    <th style="width: 500px;">Film Name</th>
+    <th style="width: 495px;">Director</th> 
+    <th style="width: 495px;">Book Link</th> 
+  </tr>
+</table>
+<table style="width:100%; border: 1px solid black;">
+{{for film in films_list:}}
+
+
+<tr style = "border: 1px solid black;">
+    <td style="width: 100px;"><a href="/modern_library/default/popular_films/{{=film.id}}/{{=(film.title).replace(" ", "_")}}">{{=film.title}} </a> 
+    </br> </td>
+    <td style="width: 100px;">{{=film.director}}</td>
+    <td style="width: 100px;">{{if film.book_id:}}<a href="/modern_library/default/book/{{=film.book_id}}"> <b>Go to the book</b> </a>{{else:}} It will be added. </td>
+</tr>
+
+{{pass}}
+    {{pass}}</table> 

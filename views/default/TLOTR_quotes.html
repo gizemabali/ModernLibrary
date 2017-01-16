@@ -1,0 +1,7 @@
+{{extend 'template.html'}}
+<h3 style="color: #a5a4a4;font-style: italic;">Some Quotes of The Lord Of The Rings</h3>
+{{for quote in quotes:}}
+  <div class="blockquote" style="margin: 5px 5px 0 0;"> <span>{{=quote.quotes}}</span> <cite>{{=quote.author}}</cite> </div>
+   
+   
+{{pass}}

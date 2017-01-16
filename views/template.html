@@ -1,0 +1,45 @@
+{{include "header.html"}}
+
+<div id="content-inner">
+          
+          {{if request.controller=="default" and request.function=="about" :}}
+		  {{include}}
+		     {{include "frontpicture.html"}}
+		  
+		  {{else:}} {{include}}
+		  
+		  {{pass}}
+        </div>
+      </div>
+	  <div id="sidebar">
+           <div id="logo"></div>
+            {{if session.user:}}
+              <p style="margin-left: 20px; font-size: 18px; font-family: sans-serif; color: #978f7c; text-decoration: none;">Hello {{=A(user.username, 
+                       _href=URL("account", args=[user.id]))}}. </br>
+              To logout {{=A("click", 
+                       _href=URL("user", "logout"))}}.   </p>      
+            {{else:}}  
+               <form style="margin-left: 20px; font-size: 18px; font-family: sans-serif; color: #978f7c; text-decoration: none;" action="{{=URL('user', 'signin')}}" method="post">
+                 Username: <input type="text" name="username"><br>
+                 Password: <input type="password" name="pw"><br>
+                  <input style="width: 173px;font-size: 18px; font-family: sans-serif; color: #978f7c; text-decoration: none;" type="submit" value="Log in">
+              </form>
+              
+              {{pass}} 
+          {{if response.flash:}}<div class="w2p_flash_signin alert alert-dismissable">{{=A(response.flash, _href=URL("default", "index"))}}</div> {{pass}}
+          {{if request.controller == "default" and request.function=="about" :}}
+	        {{include "frontpage.html"}}
+		  
+          {{else:}}{{include "front.html"}}
+           
+            
+      {{pass}}
+
+
+
+
+    </div>
+	
+	</div>
+	
+{{include "footer.html"}}

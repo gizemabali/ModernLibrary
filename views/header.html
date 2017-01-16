@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{{=page_title}}</title>
+
+<link rel="stylesheet" href="/modern_library/static/css/main.css" type="text/css" media="screen, projection" />
+  
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script> 
+ <link rel="shortcut icon" href="/modern_library/static/imgs/library4.png"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+
+<div class="container">
+    <img src="/modern_library/static/imgs/book3.jpg" width=100%/>
+</div>
+<div id="outer-wrapper">
+  <div id="inner-wrapper">
+    <div id="content-wrapper">
+      <div id="content">
+        <!--<form name="search" action="#" id="search-form">
+          <input type="text" class="txt" value="Search" />
+        </form>-->
+      
+     
+        
+        <ul id="nav">
+          
+          
+           
+                  
+		{{
+		  menu = [("index","Home"),
+		  ("authors","Authors"),("top100","Top 100"),("films","Films"),
+		  ("appguide","AppGuide"),("about","About")]
+		  
+         
+          
+		  for (path,text) in menu:
+		  
+		 
+			 
+		  if request.controller == 'default' and request.function == path:
+		     response.write(LI(A(text, _href=URL('default',path))))
+             
+          
+     		   
+              
+		  else: 
+             response.write(LI(A(text, _href=URL('default', path))))
+			 }}
+          
+         
+           {{pass}}
+        {{pass}}
+          <!--<li><a href="#">Home</a></li>
+          <li><a href="#">Newsletters</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>-->
+           <li style="list-style-image: url('/modern_library/static/images/triangle.png');" class="library_categories">Library
+             <ul class="categories">
+                <li><a href="/modern_library/default/classics">Classics</a></li>
+                <li><a href="/modern_library/default/science_fiction">Sci-Fic</a></li>
+               
+                
+             </ul></li>  
+        </ul>

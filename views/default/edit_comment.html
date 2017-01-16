@@ -1,0 +1,4 @@
+{{extend 'template.html'}}
+
+
+{{if user and (account.id == user.id or user.role == "admin"):}}{{=form}} {{else:}} It's not your comment. In order to edit this comment, you must be either its writer or the ADMIN.{{pass}}

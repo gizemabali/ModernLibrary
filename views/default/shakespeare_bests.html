@@ -1,0 +1,20 @@
+{{extend 'template.html'}}
+
+
+<table class= "shakespeare_bests_list">
+     <tr>
+         <th>Book Name</th>
+         <th>Author</th>
+     </tr>
+</table>
+{{for best_book in best_books:}}
+
+<table class= "shakespeare_bests_list">
+    <tr>
+        <td><a href="/modern_library/default/bestsellers/{{=best_book.id}}">{{=best_book.title}}</a></td>
+        <td>{{=best_book.author}}</td>
+      
+    </tr>
+</table>
+
+{{pass}}

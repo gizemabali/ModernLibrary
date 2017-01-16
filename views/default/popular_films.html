@@ -1,0 +1,46 @@
+{{extend "template.html"}}
+{{
+def info_checker(info):
+      if(info == ""):
+         return "The information of this book will be added soon..."
+      else:
+         return info
+         
+
+}}
+
+{{pass}}
+ <div style="margin-bottom: 20px;">
+  
+   
+    
+     <h3>{{=films.title}}</h3>
+     Director: {{=films.director}} <br>
+     Scenario: {{=films.scenario}} <br>
+     Year: {{=films.year}}</br><br>
+     <img width=200 src="/modern_library/static/films_covers/{{=title}}.jpg" float="left"> <br>
+     <p>Info:</p>
+     {{=info_checker(films.info)}}
+      
+     
+</div>
+
+
+{{if len(comments):}}
+  <h2>Comments</h2><br /><p>
+  {{for comment in comments:}}
+    <b><a href="/modern_library/default/account/{{=comment.post.author}}">{{=comment.user.username}} </a> 
+    : <i>{{=comment.post.body}}</i><a style="margin-left:15px;" href="{{='/modern_library/default/edit_comment/%s/%d/%d?q=%d' % (comment.post.field, comment.post.id, comment.post.image_id, comment.post.author)}}">Edit
+    <a style="margin-left:15px;" href="{{='/modern_library/default/delete_comment/%s/%d/%d?q=%d' % (comment.post.field, comment.post.id, comment.post.image_id, comment.post.author)}}">Delete
+    </a><br>
+  {{pass}}</p>
+{{else:}}
+  <h2>No comments posted yet</h2>
+{{pass}}
+<h2>Post a comment</h2>
+{{if form:}}
+  {{=form}}
+{{else:}}
+   <div style="margin-bottom: 50px; margin-top: 20px;">Please login or <b>{{=A("signup", _href=URL("user", "signup"))}} </b>first to post a comment...</div>
+{{pass}}     
+ {{if response.flash:}} <div class="w2p_flash alert alert-dismissable"><a href="/modern_library/default/popular_films/{{=films.id}}/{{=(films.title).replace(" ", "_")}}">{{=response.flash}}</a></div> {{pass}}

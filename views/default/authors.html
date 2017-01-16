@@ -1,0 +1,17 @@
+{{extend 'template.html'}}
+{{
+def counter(author_id):
+    return db(db.books.author == author_id).count()
+}}
+
+
+
+<ul class="author_list">
+{{for author in authors_list:}}
+   <li><a href="{{='/modern_library/default/author/%s/%d' % (author.name.lower().replace(" ", "_"), author.id)}}">{{=author.name}}</a> ({{=counter(author.id)}} books) </li>
+	
+
+	
+
+   
+{{pass}}	</ul>

@@ -1,0 +1,64 @@
+{{extend 'template.html'}}
+
+<h4 style="color: blue;"><b>Customization of template :</b></h4>
+<span ><a style="color: red;" href= "/modern_library/static/template/index.html" >Original Template</a></span> {{=A('Original Template', _href=URL('static',"/template/index.html"))}}
+<span style="padding-left: 10px;">For library part of navigation menu, a drop-down menu was made with just css options (hovers etc.)</span></br>
+<span>The top picture of website gave a bad looking to the site. So some @media css codes were writen. (line 462 of main.css)  </span> <br>
+<span>And some codes for response.flash were added to main.css</span><br>
+<span>The top picture and logo were added into the original template.</span>
+<h4 style="color: blue;"><b>Better user management :</b></h4>
+  <span style="padding-left: 10px;">  There is a edit information table for each user. Only account owner or the admin can edit it. <a style="color: red;" href="/modern_library/default/account/19">Admin account</a> <br>
+</span> <span style="color: green;">Username:admin Password:admin</span></br>
+
+ <span >    Also for each comment, if you are comment's writer or the admin you can edit or delete it. For example; <a style="color: red;" href="/modern_library/default/book/5">one of them</a></br></span> 
+ <span >    And user should sign up first to write a comment.</span> 
+<h4 style="color: blue;"><b>Form system :</b></h4>
+   <a style="color: red;" href="/modern_library/default/book/5">one of them</a>
+   <span style="padding-left: 10px;">In order to edit or to delete comments we created a page edit_comments and delete_comments and made its url like this: </br> For example edit_comment URL:
+   <span style="color: black;">('/modern_library/default/edit_comment/%s/%d/%d?q=%d' % (comment.post.field, comment.post.id, comment.post.image_id, comment.post.author))</span><br>
+   So that we've used <b style="color: blue;">update_record</b> and <b style="color: blue;">delete codes</b> of database using these args and vars values.
+   </br> We added a field into post table as named field to identify category. "comment.post.field" code is used to identify categories because there are books and films tables in database. They have some same ids for elements. For example: <br>
+   <span style="color: black;">/default/popular_films/13/The_Chronicles_of_Narnia </span> for films<br>
+   <span style="color: black;">/default/book/13 </span>for books <br> 
+   
+   </span>
+<h4 style="color: blue;"><b>Content coverage :</b></h4>
+   <span style="padding-left: 10px;"> There are 12 tables in database. authors, books, post, advanced_search, user, quotes, films, appguides, history, travellings, lib, series  </span>
+   <br>There is connection among authors, books, post. Another connection is between user and post(using user's id and post's author).
+<h4 style="color: blue;"><b>More dynamic content :</b></h4>
+
+   <span>We made an advanced_search inside of index page and it's defined in db.py. But it's NOT just a search form, but an Advanced Search.
+   If user enter more than one option, it decreases the number of books. {{=A('PAGE', _href=URL('default','index'))}} Codes to manage this:</span> </br>
+   <span> * If you want to try some author names: Albert Camus, George Orwell, John Steinbeck, Franz Kafka <br>
+    some publisher names: Can Yayınevi, Metis Yayınevi , April Yayınevi  </span>
+   <div style="padding-left: 60px; color: black;"><span >
+    advanced_search = SQLFORM(db.advanced_search) <br>
+    databases = []<br>
+    if advanced_search.process(dbio=False).accepted:<br>
+        
+       <span style="padding: 30px;"> part_string = splitting(advanced_search.vars["author"])<br></span>
+        <span style="padding: 30px;">last_price = advanced_search.vars["price"]<br></span>
+        <span style="padding: 30px;">... more like this<br></span>
+      
+       <span style="padding: 30px;"> if part_string != "":<br></span>
+       <span style="padding: 50px;">     databases.append(db.books.author_name == part_string )<br></span>
+       <span style="padding: 30px;"> if last_price != "":<br></span>
+       <span style="padding: 50px;">     databases.append(db.books.price == last_price)<br></span>
+       <span style="padding: 30px;"> ... more like this<br></span>
+       <span style="padding: 30px; color: #FF00FF;"> query = reduce(lambda a,b:(a&b),databases)<br></span>
+      <span style="padding: 30px;color: #FF00FF;">  database_function_info = db(query).select()<br></span></span>
+    else:<br>
+        <span style="padding: 30px;">database_function_info = []<br></span>
+   
+   
+   </span></div>
+ </br><span>Advanced search was modified for upper and lower case and spaces between words.</span> 
+<span> There are both author as an id and author_name. Because author_name is needed to use in advanced search while searching the author's book(for advanced_search table's author). author as id is need to match the authors and books.</span> 
+ <h4>Some other Options</h4>  
+ <span>We gave the other website's links to buy the book. For example; amazon, betterworldbooks, idefix {{=A('Example Page', _href="/project_gizem_umran/default/book/7")}}</span>
+ And we used css id and classes.</span>
+ <br><br>
+ <span>We created categories for classics and science fiction and they are connected to the same table, books. </span>{{=A('Example', _href=URL('default',"classics"))}}
+ 
+ <span>We gave other links to the websites expect from books. </span> {{=A('Other Links', _href=URL('default',"appguide"))}}
+   <br></br><br>

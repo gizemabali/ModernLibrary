@@ -1,0 +1,26 @@
+{{extend "template.html"}}
+{{
+def info_checker(info):
+      if(info == ""):
+         return "The information of this book will be added soon..."
+      else:
+         return info
+         
+
+}}
+
+{{pass}}
+ <div style="margin-bottom: 20px;">
+  
+   
+    
+     <h3>{{=series.seri_name}}</h3>
+     Author: {{=series.author}} <br>
+     Author Info:{{=series.author_info}}<br>
+     Seri Name: {{=series.seri_name}} <br><br>
+     <img width=200 src="/modern_library/static/seri_img/{{=seri_name}}.jpg" float="left"> <br>
+     <p>Info:</p>
+     {{=info_checker(series.info)}}
+      
+     
+</div>

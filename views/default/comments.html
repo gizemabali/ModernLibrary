@@ -1,0 +1,6 @@
+{{extend 'template.html'}}
+
+<h1>{{=name}} Comments</h1>
+{{for post in comments:}}
+    <div style="display: inline-block; width: 220px;"><div>{{=post.body}}</div></div>
+{{pass}}

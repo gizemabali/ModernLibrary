@@ -1,0 +1,20 @@
+{{extend 'template.html'}}
+<h1>{{=image.title}} [{{=image.vote}}]</h1>
+<div style="text-align:center">
+<img width="200px"
+     src="{{=URL('download', args=image.file)}}" />
+</div>
+{{if len(comments):}}
+  <h2>Comments</h2><br /><p>
+  {{for comment in comments:}}
+    <p><b>{{=comment.user.username}} says</b>: <i>{{=comment.post.body}}</i></p>
+  {{pass}}</p>
+{{else:}}
+  <h2>No comments posted yet</h2>
+{{pass}}
+<h2>Post a comment</h2>
+{{if form:}}
+  {{=form}}
+{{else:}}
+   Please login or {{=A("signup", _href=URL("user", "signup"))}} first to post a comment...
+{{pass}}     

@@ -1,0 +1,47 @@
+{{extend 'template.html'}} 
+{{
+def name_changer(book_name):
+     book = book_name.lower()
+     book = book.replace(" ", "_")
+     return book
+}}
+      <div>
+        <b>Author:</b> {{=author}} <br>
+		<b>Title:</b> {{=book.title}} <br>
+        <b>Category:</b> {{=book.category}} </br>
+        <b>Price:</b> {{=book.price}} TL <br>
+        <b>Publisher:</b> {{=book.publisher}}</br></br>
+        
+        <div style="float:left; height: 350px;"><img width=200 src="/modern_library/static/book_covers/{{=name_changer(book.title)}}.jpg" float="left"> </div>
+        
+        <ul style="float:right; width: 500px; display: block; height: 310px; list-style-type: none;">
+            <h4 >Buy from the available websites</h4>
+            <li style="padding-right: 50px;padding-bottom: 20px;"><a href="{{=book.amazon_link}}"><img width=150 src="/modern_library/static/link_logos/amazon.jpg"> </a></li>
+            <li style="padding-right: 50px;padding-bottom: 20px;"><a href="{{=book.betterworld_link}}"><img width=150 src="/modern_library/static/link_logos/better_world_books.jpg"></a></li>
+            <li style="padding-right: 50px;padding-bottom: 20px;"><a href="{{=book.idefix_link}}"><img width=150 src="/modern_library/static/link_logos/idefix.jpg"> </a></li>
+        </ul>
+         <br><br>   
+        <div><b>Info:</b> {{=book.info}}</div>
+        <p></p>
+      </div>
+
+{{if len(comments):}}
+  <h2>Comments</h2><br /><p>
+  {{for comment in comments:}}
+    <b><a href="/modern_library/default/account/{{=comment.post.author}}">{{=comment.user.username}} </a> 
+    
+    says</b>: <i>{{=comment.post.body}}</i><a style="margin-left:15px;" href="{{='/modern_library/default/edit_comment/%s/%d/%d?q=%d' % (comment.post.field, comment.post.id, comment.post.image_id, comment.post.author)}}">Edit
+    <a style="margin-left:15px;" href="{{='/modern_library/default/delete_comment/%s/%d/%d?q=%d' % (comment.post.field, comment.post.id, comment.post.image_id, comment.post.author)}}">Delete
+    </a><br>
+                                                                         
+  {{pass}}</p>
+{{else:}}
+  <h2>No comments posted yet</h2>
+{{pass}}
+<h2>Post a comment</h2>
+{{if form:}}
+  {{=form}}
+{{else:}}
+   <div style="margin-bottom: 50px; margin-top: 20px;">Please login or <b>{{=A("signup", _href=URL("user", "signup"))}} </b>first to post a comment...</div>
+{{pass}}     
+ {{if response.flash:}} <div class="w2p_flash_book alert alert-dismissable"><a href="/modern_library/default/book/{{=book.id}}">{{=response.flash}}</a></div> {{pass}}

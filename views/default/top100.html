@@ -1,0 +1,20 @@
+{{extend "template.html"}}
+
+<h4>Bestsellers:</h4>
+<table style="width:100%; border: 1px solid black;">
+<tr>
+    <th style="width: 500px;">Book Name</th>
+    <th style="width: 495px;">Author</th> 
+
+  </tr>
+</table>
+
+<table class="width_100" style="width:100%; border: 1px solid black;">
+{{for top in top100_list:}}
+<tr>
+    <td><a href="/modern_library/default/book/{{=top.id}}">{{=top.title}} </a> </td>
+    <td>{{=top.author_name}}</br> </td>
+   
+</tr> {{pass}}
+</table> 
+   

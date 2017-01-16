@@ -1,0 +1,23 @@
+{{extend 'template.html'}}
+<br>
+<h2><b>AppGuide</b></h2>
+</br>
+<ul style="display: inline;list-style-type: none">
+{{for app in app_list:}}
+
+
+
+    <div style="width:150px; display: -webkit-inline-box; margin:10px;"><li><img width=90 src="/modern_library/static/link_logos/{{=app.title}}.jpg">{{=A(app.title, _href=app.google_play_link)}}</li>
+    </div>
+ 
+
+    {{pass}}
+   </ul>
+<!--<html>
+<body>
+<a href="https://play.google.com/store/apps/details?id=com.audiobooks.androidapp">Audio Books by Audiobooks</a><br>
+<a href="https://play.google.com/store/apps/details?id=ak.alizandro.smartaudiobookplayer">Smart AudioBook Player</a><br>
+<a href="https://play.google.com/store/apps/details?id=com.google.android.apps.books&hl=tr">Google Play Books</a><br>
+<a href="https://play.google.com/store/apps/details?id=com.amazon.kindle&hl=tr">Amazon Kindle</a><br>
+</body>
+</html>-->

@@ -1,0 +1,23 @@
+{{extend 'template.html'}}
+
+
+<table style="width:100%; border: 1px solid black;">
+<tr>
+    <th style="width: 500px;">Book Name</th>
+    <th style="width: 495px;">Author</th> 
+    <th style="width: 495px;">Category</th> 
+
+  </tr>
+</table>
+{{for book in books:}}
+<table class="width_100" style="width:100%;">
+  <tr>
+       <td><a href="/modern_library/default/book/{{=book.id}}">{{=book.title}} </a> </td>
+       <td><a href="{{='/modern_library/default/author/%s/%d' % (book.author_name.lower().replace(" ", "_"), book.author)}}"> {{=book.author_name}}</a></td>
+       <td> {{=book.category}}</td>
+  </tr>	
+</table>
+	
+
+   
+{{pass}}
